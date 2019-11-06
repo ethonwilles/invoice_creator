@@ -1,12 +1,12 @@
 import docx
 import os
 
-path = "C:/Users/terra/Documents/Invoices"
+
 
 inv_num = input("Enter Invoice Number: ")
 location = input("Enter Location: ")
 lot_num = input("Enter Lot Number: ")
-window_amt = input("Enter amount of windows")
+window_amt = input("Enter amount of windows: ")
 window_price_per = 22
 sliders = input("Enter amount of sliders: ")
 slider_price_per = 23
@@ -61,6 +61,6 @@ main_p.add_run(f"\nTOTAL                                                        
 
 document.add_page_break()
 try:
-    document.save('C:/Users/terra/Documents/Invoices/'+f'invoice{inv_num}.docx')
+    document.save('C:/Users/Owner/Documents/Invoices/'+f'Invoice for Alside {inv_num} {location}.docx')
 except:
     print("\nInvoice Already Exists, Try Again.")
