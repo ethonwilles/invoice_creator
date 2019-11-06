@@ -63,12 +63,13 @@ def creator():
         
         try:
             document.save('C:/Users/Owner/Documents/Invoices/'+f'Invoice for Alside {inv_num} {location}.docx')
+            print("\n Invoice Created!")
             creator()
         except:
             print("\nInvoice Already Exists, Try Again.")
             creator()
     except:
-        print("/n Program Broke for some reason. Try Again")
+        print("\n Program Broke for some reason. Try Again")
         creator()
 
 creator()
