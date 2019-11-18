@@ -1,11 +1,6 @@
 import docx
 import os
-import requests
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
-from email.mime.base import MIMEBase
-from email import encoders
-import requests
+
 
 
 def creator():
@@ -20,13 +15,13 @@ def creator():
         doors = input("Enter amt of doors: ")
         doors_price_per = 35
         lgDoors = input("Enter amt of large sliders: ")
-        ldDoor_price_per = 20
+        lgDoor_price_per = 20
         lgWin = input("Enter amt of large windows: ")
         lgWin_price_per = 11
         price_of_trip = input("Enter Price of Trip: ")
         desc = input("Enter description of services if applicable: ")
 
-        total = ((int(window_amt) * int(window_price_per)) +(int(lgDoors) * int(lgDoor_price_per)) (int(sliders) * int(slider_price_per)) + (int(doors) * int(doors_price_per))+(int(lgWin) * int(lgWin_price_per)) +int(price_of_trip))
+        total = ((int(window_amt) * int(window_price_per)) +(int(lgDoors) * int(lgDoor_price_per)) + (int(sliders) * int(slider_price_per)) + (int(doors) * int(doors_price_per))+(int(lgWin) * int(lgWin_price_per)) +int(price_of_trip))
 
 
         
@@ -62,6 +57,7 @@ def creator():
         main_p.add_run(f"\nSliders                        @${slider_price_per} per x{sliders}")
         main_p.add_run(f"\nDoors                          @${doors_price_per} per x{doors}")
         main_p.add_run(f"\nLarge Windows       @${lgWin_price_per} per x{lgWin}")
+        main_p.add_run(f"\nLarge Sliders            @${lgDoor_price_per} per x{lgDoors}")
         main_p.add_run(f"\nTrip Price: ${price_of_trip}")
         main_p.add_run(f"\n{desc}")
         main_p.add_run(f"\nTOTAL                                                                        ${total}").underline = True
@@ -104,8 +100,8 @@ def creator():
         except Exception as e:
             print(f"\nInvoice Already Exists, Try Again. Error: {e}")
             creator()
-    except:
-        print("\n Program Broke for some reason. Try Again")
+    except Exception as e:
+        print(f"\n Program Broke for some reason. Try Again. \n Error Code for Ethon: {e}")
         creator()
 
 creator()
