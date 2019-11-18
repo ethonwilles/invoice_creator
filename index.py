@@ -1,24 +1,35 @@
 import docx
 import os
+import requests
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
+import requests
 
 
 def creator():
     try:
         inv_num = input("Enter Invoice Number: ")
         location = input("Enter Location: ")
-        lot_num = input("Enter Lot Number: ")
-        window_amt = input("Enter amount of windows: ")
+        lot_num = 0
+        window_amt = input("Enter amt of windows: ")
         window_price_per = 22
-        sliders = input("Enter amount of sliders: ")
-        slider_price_per = 23
-        doors = input("Enter amount of doors: ")
-        doors_price_per = 22
-        lgWin = input("Enter amount of large windows: ")
-        lgWin_price_per = 40
+        sliders = input("Enter amt of sliders: ")
+        slider_price_per = 40
+        doors = input("Enter amt of doors: ")
+        doors_price_per = 35
+        lgDoors = input("Enter amt of large sliders: ")
+        ldDoor_price_per = 20
+        lgWin = input("Enter amt of large windows: ")
+        lgWin_price_per = 11
         price_of_trip = input("Enter Price of Trip: ")
         desc = input("Enter description of services if applicable: ")
 
-        total = ((int(window_amt) * int(window_price_per)) + (int(sliders) * int(slider_price_per)) + (int(doors) * int(doors_price_per))+(int(lgWin) * int(lgWin_price_per)) +int(price_of_trip))
+        total = ((int(window_amt) * int(window_price_per)) +(int(lgDoors) * int(lgDoor_price_per)) (int(sliders) * int(slider_price_per)) + (int(doors) * int(doors_price_per))+(int(lgWin) * int(lgWin_price_per)) +int(price_of_trip))
+
+
+        
 
 
         document = docx.Document()
@@ -62,14 +73,43 @@ def creator():
 
         
         try:
-            document.save('C:/Users/Owner/Documents/Invoices/'+f'Invoice for Alside {inv_num} {location}.docx')
+            document.save('C:/Users/terra/Documents/Invoices/'+f'Invoice for Alside {inv_num} {location}.docx')
             print("\n Invoice Created!")
+
+            # message = MIMEMultipart()
+
+
+            # mail_content = '''
+            # Invoice For Windows
+            # '''
+
+            # message.attach(MIMEText(mail_content, 'plain'))
+            # message['Subject'] = "Invoice"
+            # attach_file_name = f'C:/Users/terra/Documents/Invoices/Invoice for Alside {inv_num} {location}.docx'
+            # attach_file = open(attach_file_name, 'rb') # Open the file as binary mode
+            # payload = MIMEBase('application', 'octate-stream')
+            # payload.set_payload((attach_file).read())
+            # encoders.encode_base64(payload) #encode the attachment
+            # #add payload header with filename
+            # payload.add_header('Content-Decomposition', 'attachment', filename='Invoice1.docx')
+            # message.attach(payload)
+
+
+            # r = requests.post(
+		    #     "https://api.mailgun.net/v3/sandbox2a89baf534dc4c6a88ecc092c09a65e8.mailgun.org/messages.mime",
+		    #     auth=("api", "9077b561bf5dbb09635c5372373e3182-f696beb4-2fb9e654"),
+		    #     data={"from": "chadwilles@msn.com","to": "ethonwilles@gmail.com"},
+            #     files={"message": bytes(str(message), "utf-8")})
             creator()
-        except:
-            print("\nInvoice Already Exists, Try Again.")
+        except Exception as e:
+            print(f"\nInvoice Already Exists, Try Again. Error: {e}")
             creator()
     except:
         print("\n Program Broke for some reason. Try Again")
         creator()
 
 creator()
+
+
+
+
